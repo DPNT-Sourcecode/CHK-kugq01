@@ -35,11 +35,19 @@ class CheckoutSolution:
         special_offers = {
             'A': [{'quantity': 5, 'price': 200}, {'quantity': 3, 'price': 130}],
             'B': [{'quantity': 2, 'price': 45}],
-            'F': [{'quantity': 3, 'price': 20}]
+            'F': [{'quantity': 3, 'price': 20}],
+            'H': [{'quantity': 10, 'price': 80}, {'quantity': 5, 'price': 45}],
+            'K': [{'quantity': 2, 'price': 150}],
+            'P': [{'quantity': 5, 'price': 200}],
+            'Q': [{'quantity': 3, 'price': 80}],
+            'U': [{'quantity': 4, 'price': 120}],
+            'V': [{'quantity': 3, 'price': 130}, {'quantity': 2, 'price': 90}]
         }
 
         free_gift_offers = {
-            'E': {'quantity': 2, 'free_item': 'B'}
+            'E': {'quantity': 2, 'free_item': 'B'},
+            'N': {'quantity': 3, 'free_item': 'M'},
+            'R': {'quantity': 3, 'free_item': 'Q'}
         }
 
         if not isinstance(skus, str):
@@ -73,3 +81,4 @@ class CheckoutSolution:
             total_price += item_total
                 
         return total_price
+
