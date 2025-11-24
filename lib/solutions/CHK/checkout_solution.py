@@ -50,6 +50,12 @@ class CheckoutSolution:
             'R': {'quantity': 3, 'free_item': 'Q'}
         }
 
+        group_offers = {
+            'items': ('S','T','X','Y','Z'),
+            'quantity': 3,
+            'price': 45
+        }
+
         if not isinstance(skus, str):
             return -1
 
@@ -89,6 +95,7 @@ class CheckoutSolution:
             total_price += item_total
                 
         return total_price
+
 
 
 
