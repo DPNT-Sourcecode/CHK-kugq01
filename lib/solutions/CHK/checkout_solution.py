@@ -8,7 +8,8 @@ class CheckoutSolution:
             "B": 30,
             "C": 20,
             "D": 15,
-            "E": 40
+            "E": 40,
+            "F": 10
         }
 
         special_offers = {
@@ -56,3 +57,4 @@ class CheckoutSolution:
             total_price += item_total
                 
         return total_price
+
