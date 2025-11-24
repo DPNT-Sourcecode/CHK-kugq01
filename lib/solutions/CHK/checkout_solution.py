@@ -8,12 +8,17 @@ class CheckoutSolution:
             "A": 50,
             "B": 30,
             "C": 20,
-            "D": 15
+            "D": 15,
+            "E": 40
         }
 
         special_offers = {
-            'A': {'quantity': 3, 'price': 130},
-            'B': {'quantity': 2, 'price': 45}
+            'A': [{'quantity': 5, 'price': 200}, {'quantity': 3, 'price': 130}],
+            'B': [{'quantity': 2, 'price': 45}]
+        }
+
+        free_gift_offers = {
+            'E': {'quantity': 2, 'free_item': 'B'}
         }
 
         if not isinstance(skus, str):
