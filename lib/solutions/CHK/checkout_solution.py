@@ -3,7 +3,7 @@ class CheckoutSolution:
 
     # skus = unicode string
     def checkout(self, skus):
-        item_prices = {
+        prices = {
             "A": 50,
             "B": 30,
             "C": 20,
@@ -15,12 +15,30 @@ class CheckoutSolution:
             'B': {'quantity': 2, 'price': 45}
         }
 
-        total_price = 0
-        for sku in skus:
-            if sku in item_prices:
-                total_price += item_prices[sku]
-            else:
-                return -1
+        if not isinstance(skus, str):
+            return -1
 
-        return total_price    
+        item_counts = collections.Counter(skus)
+        total_price = 0
+
+        for item, count in item_counts.items():
+            if item not in prices:
+                return -1
+            
+            if item in special_offers:
+                offer = special_offers[item]
+                offer_quantity = offer['quantity']
+                offer_price = offer['price']
+                
+                # Apply special offers
+                num_of_offers = count // offer_quantity
+                total_price += num_of_offers * offer_price
+                
+                # Add the price of remaining items
+                remaining_items = count % offer_quantity
+                total_price += remaining_items * prices[item]
+            else:
+                total_price += count * prices[item]
+                
+        return total_price
 
