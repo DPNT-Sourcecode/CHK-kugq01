@@ -11,6 +11,16 @@ class CheckoutSolution:
         }
 
         special_offers = {
-            'A'
+            'A': {'quantity': 3, 'price': 130},
+            'B': {'quantity': 2, 'price': 45}
         }
+
+        total_price = 0
+        for sku in skus:
+            if sku in item_prices:
+                total_price += item_prices[sku]
+            else:
+                return -1
+
+        return total_price    
 
