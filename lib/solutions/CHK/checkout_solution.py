@@ -3,6 +3,7 @@ class CheckoutSolution:
 
     # skus = unicode string
     def checkout(self, skus):
+        import collections
         prices = {
             "A": 50,
             "B": 30,
@@ -41,4 +42,5 @@ class CheckoutSolution:
                 total_price += count * prices[item]
                 
         return total_price
+
 
