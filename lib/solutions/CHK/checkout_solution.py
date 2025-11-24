@@ -65,38 +65,39 @@ class CheckoutSolution:
             if item not in prices:
                 return -1
         
-        if 'E' in item_counts and 'B' in item_counts:
-            free_bs = item_counts['E'] // free_gift_offers['E']['quantity']
-            item_counts['B'] = max(0, item_counts['B'] - free_bs)
-
-        if 'N' in item_counts and 'M' in item_counts:
-            free_ms = item_counts['N'] // free_gift_offers['N']['quantity']
-            item_counts['M'] = max(0, item_counts['M'] - free_ms)
-
-        if 'R' in item_counts and 'Q' in item_counts:
-            free_qs = item_counts['R'] // free_gift_offers['R']['quantity']
-            item_counts['Q'] = max(0, item_counts['Q'] - free_qs)
+        for trigger_item, offer in free_gift_offers.items():
+            if trigger_item in item_counts:
+                free_item = offer['free_item']
+                if free_item in item_counts:
+                    num_offers = item_counts[trigger_item] // offer['quantity']
+                    item_counts[free_item] = max(0, item_counts[free_item] - num_offers)
 
         total_price = 0
+
+        group_items_in_basket = []
+        sorted_group_skus = sorted(group_offers['items'], key=lambda i: prices[i], reverse=True)
+        
+        for item in sorted_group_skus:
+            if item in item_counts:
+                group_items_in_basket.extend([item] * item_counts[item])
+        
+        num_bundles = len(group_items_in_basket) // group_offers['quantity']
+        if num_bundles > 0:
+            total_price += num_bundles * group_offers['price']
+            items_in_bundles = group_items_in_basket[:num_bundles * group_offers['quantity']]
+            item_counts.subtract(collections.Counter(items_in_bundles))
+
         for item, count in item_counts.items():
             item_total = 0
             remaining_count = count
 
             if item in special_offers:
                 for offer in special_offers[item]:
-                    offer_quantity = offer['quantity']
-                    offer_price = offer['price']
-                    
-                    num_of_offers = remaining_count // offer_quantity
-                    item_total += num_of_offers * offer_price
-                    remaining_count %= offer_quantity
+                    num_offers = remaining_count // offer['quantity']
+                    item_total += num_offers * offer['price']
+                    remaining_count %= offer['quantity']
             
             item_total += remaining_count * prices[item]
             total_price += item_total
                 
         return total_price
-
-
-
-
-
