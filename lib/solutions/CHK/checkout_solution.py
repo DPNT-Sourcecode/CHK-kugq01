@@ -17,7 +17,8 @@ class CheckoutSolution:
         }
 
         free_gift_offers = {
-            'E': {'quantity': 2, 'free_item': 'B'}
+            'E': {'quantity': 2, 'free_item': 'B'},
+            'F': {'quantity': 2, 'free_item': 'F'}
         }
 
         if not isinstance(skus, str):
@@ -32,6 +33,10 @@ class CheckoutSolution:
         if 'E' in item_counts and 'B' in item_counts:
             free_bs = item_counts['E'] // free_gift_offers['E']['quantity']
             item_counts['B'] = max(0, item_counts['B'] - free_bs)
+
+        if 'F' in item_counts and 'F' in item_counts:
+            free_fs = item_counts['F'] // free_gift_offers['F']['quantity']
+            item_counts['F'] = max(0, item_counts['F'] - free_fs)
 
         total_price = 0
         for item, count in item_counts.items():
