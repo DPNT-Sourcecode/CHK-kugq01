@@ -14,7 +14,7 @@ class CheckoutSolution:
             "H": 10,
             "I": 35,
             "J": 60,
-            "K": 80,
+            "K": 70,
             "L": 90,
             "M": 15,
             "N": 40,
@@ -37,7 +37,7 @@ class CheckoutSolution:
             'B': [{'quantity': 2, 'price': 45}],
             'F': [{'quantity': 3, 'price': 20}],
             'H': [{'quantity': 10, 'price': 80}, {'quantity': 5, 'price': 45}],
-            'K': [{'quantity': 2, 'price': 150}],
+            'K': [{'quantity': 2, 'price': 120}],
             'P': [{'quantity': 5, 'price': 200}],
             'Q': [{'quantity': 3, 'price': 80}],
             'U': [{'quantity': 4, 'price': 120}],
@@ -89,5 +89,6 @@ class CheckoutSolution:
             total_price += item_total
                 
         return total_price
+
 
 
