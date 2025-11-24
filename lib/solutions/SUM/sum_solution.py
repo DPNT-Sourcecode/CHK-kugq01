@@ -2,4 +2,6 @@
 class SumSolution:
     
     def compute(self, x, y):
-        raise NotImplementedError()
+        return x+y
+
+SumSolution().compute(1,2)
