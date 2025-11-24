@@ -63,6 +63,14 @@ class CheckoutSolution:
             free_bs = item_counts['E'] // free_gift_offers['E']['quantity']
             item_counts['B'] = max(0, item_counts['B'] - free_bs)
 
+        if 'N' in item_counts and 'M' in item_counts:
+            free_ms = item_counts['N'] // free_gift_offers['N']['quantity']
+            item_counts['M'] = max(0, item_counts['M'] - free_ms)
+
+        if 'R' in item_counts and 'Q' in item_counts:
+            free_qs = item_counts['R'] // free_gift_offers['R']['quantity']
+            item_counts['Q'] = max(0, item_counts['Q'] - free_qs)
+
         total_price = 0
         for item, count in item_counts.items():
             item_total = 0
@@ -81,4 +89,5 @@ class CheckoutSolution:
             total_price += item_total
                 
         return total_price
+
 
