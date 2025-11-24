@@ -53,5 +53,3 @@ class CheckoutSolution:
             total_price += item_total
                 
         return total_price
-
-
